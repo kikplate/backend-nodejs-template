@@ -2,7 +2,7 @@ name: backend-nodejs-template
 owner: kikplate-public
 description: Node.js Express backend API template with health and todos endpoints.
 version: 1.0.0
-
+verification_token: 6a857328-ba27-4122-bab1-ac36d0f753a4
 category: backend
 
 tags:
