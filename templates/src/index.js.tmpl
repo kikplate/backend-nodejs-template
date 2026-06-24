@@ -1,0 +1,29 @@
+import express from "express";
+
+const app = express();
+app.use(express.json());
+
+const apiPrefix = process.env.API_PREFIX || "{{ .apiPrefix }}";
+const port = Number(process.env.PORT || {{ .appPort }});
+
+const todos = [{ id: 1, text: "Sample task", done: false }];
+
+app.get(`${apiPrefix}/health`, (_req, res) => {
+  res.json({ status: "ok", service: "backend", project: "{{ .projectName }}" });
+});
+
+app.get(`${apiPrefix}/todos`, (_req, res) => {
+  res.json({ items: todos });
+});
+
+app.post(`${apiPrefix}/todos`, (req, res) => {
+  const text = String(req.body?.text || "").trim();
+  if (!text) return res.status(400).json({ error: "text_required" });
+  const todo = { id: todos.length + 1, text, done: false };
+  todos.push(todo);
+  res.status(201).json(todo);
+});
+
+app.listen(port, "0.0.0.0", () => {
+  console.log(`backend listening on ${port}`);
+});

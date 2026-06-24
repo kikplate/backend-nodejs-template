@@ -1,0 +1,45 @@
+name: backend-nodejs-template
+owner: kikplate-public
+description: Node.js Express backend API template with health and todos endpoints.
+version: 1.0.0
+
+category: backend
+
+tags:
+  - nodejs
+  - express
+  - api
+  - backend
+  - starter
+
+schema:
+  projectName:
+    type: string
+    default: backend-nodejs-template
+  projectDescription:
+    type: string
+    default: Node.js Express backend API template with health and todos endpoints.
+  nodeVersion:
+    type: string
+    default: "22"
+  appPort:
+    type: int
+    default: 8000
+  apiPrefix:
+    type: string
+    default: /api
+
+modules:
+  docker:
+    enabled: true
+
+files:
+  - path: .gitignore
+    template: https://raw.githubusercontent.com/kikplate/backend-nodejs-template/main/templates/.gitignore.tmpl
+  - path: package.json
+    template: https://raw.githubusercontent.com/kikplate/backend-nodejs-template/main/templates/package.json.tmpl
+  - path: src/index.js
+    template: https://raw.githubusercontent.com/kikplate/backend-nodejs-template/main/templates/src/index.js.tmpl
+  - path: Dockerfile
+    template: https://raw.githubusercontent.com/kikplate/backend-nodejs-template/main/templates/Dockerfile.tmpl
+    condition: modules.docker.enabled
